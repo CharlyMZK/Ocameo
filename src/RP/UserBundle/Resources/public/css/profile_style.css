@@ -1,0 +1,362 @@
+.nav .open>a, .nav .open>a:hover, .nav .open>a:focus {
+    border-color:lightgrey!important;
+}
+.act{
+    width:40px !important;
+}
+.refresh{
+    width: 200px;
+    border: none;
+    border-radius: 75px;
+}
+.refresh span{
+    top:3px !important;
+}
+.modalShare{
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1050;
+    display: none;
+    overflow: hidden;
+    -webkit-overflow-scrolling: touch;
+    outline: 0
+}
+.modalHighlight{
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1050;
+    display: none;
+    overflow: hidden;
+    -webkit-overflow-scrolling: touch;
+    outline: 0
+}
+.dropdown-menu li a{cursor:pointer;}
+.modalExpress{
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1050;
+    display: none;
+    overflow: hidden;
+    -webkit-overflow-scrolling: touch;
+    outline: 0
+}
+.text-express{
+    width: 350px;
+    height: 35px;
+    margin: 10px;
+}
+
+.post_link{
+    color: #1abc9c;
+}
+.champ{
+
+display:block !important;
+
+}
+.btn-default{
+    background-color:#1abc9c;
+}
+.main_profile{  
+    margin-bottom:74px;
+    margin-top:74px;
+	min-height:500px;
+}
+.content_profile{
+    margin-top:75px;
+}
+.tab-pane{
+    min-height:500px;
+}
+/* USER PROFILE PAGE */
+ .card {
+    
+    background-color: rgba(214, 224, 226, 0.2);
+    -webkit-border-top-left-radius:5px;
+    -moz-border-top-left-radius:5px;
+    border-top-left-radius:5px;
+    -webkit-border-top-right-radius:5px;
+    -moz-border-top-right-radius:5px;
+    border-top-right-radius:5px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.card.hovercard {
+    position: relative;
+    padding-top: 0;
+    overflow: hidden;
+    text-align: center;
+    background-color: #fff;
+    background-color: rgba(255, 255, 255, 1);
+}
+.card.hovercard .card-background {
+    height: 270px;
+}
+.card-background img {
+    -webkit-filter: blur(25px);
+    -moz-filter: blur(25px);
+    -o-filter: blur(25px);
+    -ms-filter: blur(25px);
+    filter: blur(25px);
+    margin-left: -100px;
+    margin-top: -200px;
+    min-width: 130%;
+}
+.card.hovercard .useravatar {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    right: 0;
+}
+.card.hovercard .useravatar img {
+    width: 150px;
+    height: 150px;
+    max-width: 150px;
+    max-height: 150px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    border: 5px solid rgba(255, 255, 255, 0.5);
+}
+.card.hovercard .card-info {
+    position: absolute;
+    bottom: 14px;
+    left: 0;
+    right: 0;
+}
+.card.hovercard .card-info .card-title {
+    padding:0 5px;
+    font-size: 20px;
+    line-height: 1;
+    color: white;
+    background-color: rgba(255, 255, 255, 0.1);
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+.card.hovercard .card-info {
+    overflow: hidden;
+    font-size: 12px;
+    line-height: 90px;
+    color: #737373;
+    text-overflow: ellipsis;
+}
+.card.hovercard .bottom {
+    padding: 0 20px;
+    margin-bottom: 17px;
+}
+.btn-pref .btn {
+    -webkit-border-radius:0 !important;
+}
+.well{
+    min-height:500px;
+}
+.nav-tabs{
+    background-color: rgb(229, 229, 229);
+}
+
+.nav-tabs>li{
+    left:25%;
+    border-left:solid lightgrey 1px;
+       border-right:solid lightgrey 1px;
+}
+
+.nav-tabs>li>a{
+    color:#1abc9c;
+}
+.active>a{
+    color:black !important;
+}
+
+/*-----------------------------------------------------------------------------------*/
+/*  Widget
+/*-----------------------------------------------------------------------------------*/
+.widget{
+    margin-bottom: 60px;
+    width: 100%;
+}
+
+.widget-title {
+    margin: 0 0 30px 0;
+    padding: 0;
+    text-transform: uppercase;
+    font-weight: 900;
+    font-size: 15px;
+    line-height: 20px;
+    letter-spacing: 2px;
+}
+
+.widget .tagcloud a{
+    background: #fff;
+    padding: 8px 16px;
+    margin: 0 5px 5px 0;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 11px !important;
+    display: inline-block;
+    color: #333;
+    border: 1px solid #eee;
+}
+
+.widget .textwidget{
+}
+
+.widget select{
+    width: 100%;
+}
+
+
+.widget ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.widget ul li {
+    margin: 0 0 10px 0;
+    padding: 0 0 10px 0;
+    display: block;
+    border-bottom: 1px solid #e5e5e5;
+    font-size: 14px;
+    color: #aaa;
+}
+
+
+.widget ul li a{
+    display: inline-block;
+}
+
+.widget ul li .post-date{
+    display: block;
+    font-size: 12px;
+    color: #aaa;
+}
+
+.widget ul li ul li{
+    padding-left: 10px;
+}
+
+.widget ul li ul > li:first-child{
+    padding-top: 10px;
+}
+
+.widget ul li ul li ul li{
+    padding-left: 20px;
+}
+
+.widget ul li.page_item_has_children,
+.widget ul li.menu-item-has-children{
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+
+.widget.widget_rss li{
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+.widget.widget_rss li a{
+    padding: 0;
+    display: block;
+    font-weight: bold;
+}
+
+.widget_calendar #calendar_wrap,
+.widget_revslider{
+    position: relative;
+    background: #fff;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+}
+
+.widget_calendar table {
+    width: 100%;
+    border-collapse: collapse;
+    border-bottom: none;
+    box-shadow: 0 1px 0 rgba(220, 220, 220, 1);
+}
+
+.widget_calendar table th,
+.widget_calendar table td{
+    text-align: center;
+    border-collapse: collapse;
+}
+
+.widget_calendar table tbody td {
+    padding: 4px;
+    border: 0px;
+}
+
+.widget_calendar caption {
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    border-bottom: 1px solid #e5e5e5;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.widget_calendar table tfoot{
+    display: none;
+}
+
+.widget_search form{
+    position: relative;
+}
+
+.widget_search label{
+    display: none;
+}
+
+.widget_search input[type="text"] {
+    width: 100%;
+    max-width: 100% !important;
+    padding: 5px 40px 5px 10px;
+    outline: 0;
+    margin: 0;
+    text-align: left;
+    vertical-align: top;
+    height: 40px;
+    background-color: #fff;
+    border:1px solid #eee;
+}
+
+.widget_search input[type="submit"] {
+    text-indent: -2000%;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 40px !important;
+    height: 40px;
+    border: none;
+    outline: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0;
+    margin: 0;
+    background: url('assets/img/shop/ico-zoom.png') center no-repeat;
+}
+
+.widget img{
+    max-width: 100%;
+    height: auto;
+}
+
+
+
+.posts{
+    margin-top:40px;
+}

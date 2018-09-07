@@ -1,0 +1,97 @@
+{% extends "RPUserBundle::profile_layout.html.twig" %}
+
+
+{% block title %}
+
+{% endblock %}
+
+{% block stylesheets %} 
+  {{ parent() }}
+  <link rel="stylesheet" href="{{ asset('bundles/rpuser/css/friend_card.css') }}" type="text/css" />
+{% endblock %} 
+
+{% block content %} 
+    <div class="tab-content">
+      <div class="tab-pane fade in active page-content" id="tab1">
+        <div class="container">  
+          <div class="row">
+            <div class="col-md-9 posts">                  
+                {% for friend in listFriendshipHold %}
+                  {% if friend.statut == "ami" %}
+                    <div class="col-lg-4 col-sm-4">
+                      <div class="card hovercard pin">
+                        <div class="cardheader">
+                        </div>
+                        <div class="avatar">
+                          <img alt="" src="{{ asset('images/') }}{{friend.target.imagename}}">
+                        </div>
+                        <div class="info">
+                          <div class="title">
+                            <a target="_blank" href="{{ app.request.getBaseURL() }}/user/{{friend.target.id}}">{{friend.target.username}}</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  {% endif %}
+                {% endfor %}
+                {% for friend in listFriendshipTarget %}
+                  {% if friend.statut == "ami" %}
+                    <div class="col-lg-4 col-sm-4">
+                      <div class="card hovercard pin">
+                        <div class="cardheader">
+                        </div>
+                        <div class="avatar"> 
+                          <img alt="" src="{{ asset('images/') }}{{friend.holder.imagename}}">
+                        </div>
+                        <div class="info"> 
+                          <div class="title">
+                            <a target="_blank" href="{{ app.request.getBaseURL() }}/user/{{friend.holder.id}}">{{friend.holder.username}}</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  {% endif %}
+                {% endfor %}
+              </div>
+              <div class="col-md-3 col-side hidden-sm">
+                <aside class="blog-widget-area widget-area">    
+                   <div id="search-2" class="widget widget_search">
+                   </div>      
+                   <div id="recent-posts-2" class="widget widget_recent_entries"><h3 class="widget-title">Dernieres series </h3>      
+                     <ul>
+                          {% for serie in listSeries %}
+                              <li>
+                                <a href="{{ path('rp_article_show_serie', { 'id' : serie.id }) }}">{{serie.name}}</a>
+                                <span class="post-date">{{serie.type}}</span>
+                              </li>
+                          {% endfor %}
+                     </ul>
+                   </div>
+                   <div id="categories-2" class="widget widget_categories"><h3 class="widget-title">Categories</h3>      
+                     <ul>
+                          {% for type in types %}
+                            <li class="cat-item cat-item-17">{{type.type}}</li>
+                          {% endfor %}
+                     </ul>
+                   </div>
+                   <div id="md_widget_pinterest-2" class="widget widget_md_widget_pinterest">
+                     <h3 class="widget-title">Plus de series</h3>
+                     <ul>
+                          {% for serie in listSeries %}
+                              <li style="background-image:url({{serie.image}}"><a href="https://www.pinterest.com/pin/212091463678746524/" target="_blank"></a></li>
+                          {% endfor %}
+                     </ul>
+                   </div>    
+                 </aside>
+              </div>
+          </div>      
+        </div>
+      </div>
+    </div>
+    <script>
+      $('.friends').addClass('active');
+    </script>
+{% endblock %} 
+
+
+

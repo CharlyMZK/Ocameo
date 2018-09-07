@@ -1,0 +1,79 @@
+{# src/OC/PlatformBundle/Resources/views/Advert/index.html.twig #}
+
+
+{% extends "RPUserBundle::profile_layout.html.twig" %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block stylesheets %} 
+  {{ parent() }}
+  <link rel="stylesheet" href="{{ asset('bundles/rpuser/css/friend_card.css') }}" type="text/css" />
+{% endblock %} 
+
+
+{% block content %} 
+  <div class="tab-content">
+    <div class="tab-pane fade in active page-content" id="tab1">
+      <div class="container"> 
+        <div class="row">
+          <div class="col-md-9 posts">
+            {% for demande in myRequests %}
+              {% if demande.statut == "waiting" %}
+                <div class="[ col-xs-12 col-sm-offset-1 col-md-9 ] ask_{{demande.id}}">
+                  <div class="[ panel panel-default ] panel-google-plus">
+                    <div class="panel-heading">
+                      <img class="[ img-circle pull-left ]" src="https://lh3.googleusercontent.com/-CxXg7_7ylq4/AAAAAAAAAAI/AAAAAAAAAQ8/LhCIKQC5Aq4/s46-c-k-no/photo.jpg" alt="Mouse0270" />
+                      <h3><a href='../user/{{demande.holder.id}}'>{{demande.holder.username}}</a> t'as ajouté en ami</h3>
+                      <h5><span>Demande d'amis</span> - <span>{{demande.date|date("h:m")}}</span> - <span>{{demande.date|date("d/m/Y")}}</span> </h5>
+                    </div>
+                    <div class="panel-footer">
+                      <button type="button" class="[ btn ] btn-primary" onclick="accept({{demande.id}});">Accepter</button>
+                      <button type="button" class="[ btn ] btn-danger" onclick="refuse({{demande.id}});">Refuser</button>
+                    </div>
+                  </div>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+          <div class="col-md-3 col-side hidden-sm">
+            <aside class="blog-widget-area widget-area">    
+              <div id="search-2" class="widget widget_search">
+              </div>      
+              <div id="recent-posts-2" class="widget widget_recent_entries"><h3 class="widget-title">Dernieres series </h3>      
+                <ul>
+                  {% for serie in listSeries %}
+                    <li>
+                      <a href="{{ path('rp_article_show_serie', { 'id' : serie.id }) }}">{{serie.name}}</a>
+                      <span class="post-date">{{serie.type}}</span>
+                    </li>
+                  {% endfor %}
+                </ul>
+              </div>
+              <div id="categories-2" class="widget widget_categories"><h3 class="widget-title">Categories</h3>      
+                <ul>
+                  {% for type in types %}
+                    <li class="cat-item cat-item-17">>{{type.type}}</li> 
+                  {% endfor %}
+                </ul>
+              </div>
+              <div id="md_widget_pinterest-2" class="widget widget_md_widget_pinterest">
+                <h3 class="widget-title">Plus de series</h3>
+                <ul>
+                  {% for serie in listSeries %}
+                    <li style="background-image:url({{serie.image}}"><a href="https://www.pinterest.com/pin/212091463678746524/" target="_blank"></a></li>
+                  {% endfor %}
+                </ul>
+              </div>    
+            </aside>
+          </div>         
+        </div>      
+      </div>
+    </div>
+  </div>
+  <script>
+    $('.notif').addClass('active');
+  </script>
+{% endblock %} 
+

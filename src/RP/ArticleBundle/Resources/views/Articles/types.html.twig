@@ -1,0 +1,62 @@
+{% extends "RPCoreBundle::layout.html.twig" %}
+
+{% block stylesheets %} 
+  {{ parent() }}
+  <link rel="stylesheet" href="{{ asset('bundles/rparticle/css/articles_style.css') }}" type="text/css" />
+{% endblock %} 
+
+{% block body %}
+  <div id="wrap" class="full-width border-4">
+    <div id="page-header" class="border-4 textaligncenter custom-bgcolor bg-fixed full-image" style="background-color:#ffffff;background-image:url(http://demo.themesholic.com/flex/wp-content/uploads/2014/05/tumblr_mxrv2tfdaT1st5lhmo1_1280.jpg);">    
+      <div class="container padding-large">
+        <h2 style="color:#ffffff"></h2> 
+        <h3 style="color:#ffffff">Suivez les news !</h3>
+      </div>
+    </div>
+    <div class="page-content" id="blog-container">
+      <div class="container"> 
+        <div class="row">  
+            <div class="col-md-3 col-side hidden-sm">
+              <aside class="blog-widget-area widget-area">    
+                <div id="search-2" class="widget widget_search"> 
+                </div>      
+                <div id="recent-posts-2" class="widget widget_recent_entries"><h3 class="widget-title">Derniers films </h3>      
+                  <ul>
+                    {% for film in listFilms %}
+                      <li>
+                        <a href="{{ path('rp_article_show_film', { 'id' : film.id }) }}">{{film.name}}</a>
+                        <span class="post-date">{{film.type}}</span>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                </div>
+                <div id="categories-2" class="widget widget_categories"><h3 class="widget-title">Categories</h3>      
+                  <ul>
+                    {% for type in types %}
+                      <li class="cat-item cat-item-17">{{type.type}}</li>
+                    {% endfor %}
+                  </ul> 
+                </div>
+                <div id="md_widget_pinterest-2" class="widget widget_md_widget_pinterest">
+                  <h3 class="widget-title">Plus de films</h3>
+                  <ul>
+                    {% for film in listFilms %}
+                      <li style="/web/bundles/rpcore/img/{{film.image}}"><a href="{{ path('rp_article_show_film', { 'id' : film.id }) }}" target="_blank"></a></li>
+                    {% endfor %}
+                  </ul>
+                </div>    
+              </aside>
+            </div>
+            <!--PAGE CONTENT -->
+            <div class="col-md-9">
+              <div class="md-blog classic">
+                <article class="post-2981 post format-standard">   
+                 
+                </article>
+              </div>
+            </div>
+        </div>      
+      </div>
+    </div>  
+  </div>
+{% endblock %} 

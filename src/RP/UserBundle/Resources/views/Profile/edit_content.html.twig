@@ -1,0 +1,82 @@
+{% block stylesheets %} 
+  <link rel="stylesheet" href="{{ asset('bundles/rpuser/css/user_style.css') }}" type="text/css" />
+  <link rel="stylesheet" href="{{ asset('bundles/rpuser/css/profile_style.css') }}" type="text/css" />
+  <link rel="stylesheet" href="{{ asset('bundles/rpuser/css/post_style.css') }}" type="text/css" />
+{% endblock %} 
+
+{% block rphome_body %} 
+  <div class="main_profile">
+    <div class="card hovercard">
+      <div class="card-background">
+        <img class="card-bkimg" alt="" src="{{ asset('images/') }}{{user.imagename}}">
+      </div>
+      <div class="useravatar">
+        <img alt="" src="{{ asset('images/') }}{{user.imagename}}">
+      </div>
+      <div class="card-info"> <span class="card-title">{{user.username}}</span>
+      </div>
+  </div>
+  <div>
+    <ul class="nav nav-tabs">
+      <li><a href="../profile/">Exprimez vous !</a></li>
+      <li><a href="../notifications" >Partagez</a></li>
+      <li><a href="../notifications" >Notifications</a></li>
+      <li ><a href="{{ path('rp_user_see_friend') }}" >Liste d'amis</a></li>
+      <li class="active"><a href="{{ path('fos_user_profile_edit') }}" >Modifier mon profil</a></li>
+    </ul>
+  </div>
+  <div class="content_profile">
+    <div class="tab-content">
+      <div class=" active tab-pane fade in" id="tab3">
+        <section id="login">
+          <div class="container">
+            <div class="row">
+              <div class="col-xs-12">
+               <div class="form-wrap">
+                <h1>Modification du profil</h1>
+                <form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit">
+                 <div class="form-group">
+                  <label for="lg_username" class="champ">Nom d'utilisateur : </label>
+                  {{ form_widget(form.username) }}
+                 </div>
+                 <div class="form-group">
+                  <label for="lg_password" class="champ">Email : </label>
+                   {{ form_widget(form.email) }}
+                 </div>
+                 <div class="form-group">
+                   <label for="lg_password" class="champ">Image : </label>
+                   {{ form_widget(form.imageFile) }}
+                 </div>
+                 <div class="form-group">
+                  <label for="lg_username" class="champ">Mot de passe actuel : </label>
+                  {{ form_widget(form.current_password) }}
+                 </div>
+                 <div class="form-group">
+                  {{ form_widget(form._token) }}
+                 </div>
+                 <div>
+                    <input type="submit" class="btn btn-default" value="{{ 'Modifier'|trans }}" />
+                 </div>
+                </form>
+                <hr>
+               </div>
+              </div> <!-- /.col-xs-12 -->
+            </div> <!-- /.row -->
+          </div> <!-- /.container -->
+        </section>
+      </div>
+    </div>
+  </div>  
+</div>     
+
+<script>
+$('.modif_profile').click(function(){
+  $.post( "{{ path('fos_user_profile_edit') }}",{}, function( data ) { 
+    alert(data)
+  }); 
+})
+</script>
+<script src="{{ asset('bundles/rpuser/js/user_script.js') }}"></script>
+<script src="{{ asset('bundles/rpuser/js/profile_script.js') }}"></script>  
+{% endblock %} 
+

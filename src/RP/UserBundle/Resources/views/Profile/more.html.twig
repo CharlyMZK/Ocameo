@@ -1,0 +1,135 @@
+          {% if listActualite|length > 0  %}               
+            {% for actualite in listActualite %} 
+              {% if actualite.user == user  or actualite.target == user %}
+                {% if actualite.type == "message" %}   
+                  <div class="[ col-xs-12 col-sm-offset-1 col-md-9 ]">
+                    <div class="[ panel panel-default ] panel-google-plus">
+                      <div class="dropdown">
+                        <span class="dropdown-toggle" type="button" data-toggle="dropdown">
+                          <span class="[ glyphicon glyphicon-chevron-down ]"></span>
+                        </span>
+                        <ul class="dropdown-menu" role="menu">
+                          <li role="presentation"><a role="menuitem" onclick="deleteActu({{actualite.id}})" tabindex="-1" href="#">Supprimer</a></li>
+                        </ul>
+                      </div>
+                      <div class="panel-google-plus-tags">
+                        <ul>
+                          <li>+ {{actualite.type}}</li>
+                        </ul>
+                      </div>
+                      <div class="panel-heading">
+                        <img class="[ img-circle pull-left ]" src="{{ asset('images/') }}{{actualite.user.imagename}}" width="70px" height="70px" alt="profile" />
+                        <h3><a href='../user/{{actualite.user.id}}'>{{actualite.user.username}}</a></h3>
+                        <h5><span>Actualite</span> - <span>{{actualite.date|date("h:m")}}</span> - <span>{{actualite.date|date("d/m/Y")}}</span> </h5>
+                      </div>
+                      <div class="panel-body">
+                        <p>[{{actualite.target.username}}] {{actualite.contenu | raw}}</p> 
+                        <p><a class="tool" onclick="comments({{actualite.id}});">Commentaires</a></p>
+                        <div class="box_{{actualite.id}}">
+                          <div class="commentbox"> 
+                          </div>
+                        </div>
+                      </div>
+                      <div class="panel-footer">
+                        <!--<button onclick="like({{actualite.id}})" type="button" class="[ btn ] act">
+                            <span class="[ glyphicon glyphicon-heart ]"></span>
+                        </button>-->  
+   
+                       <input class="input-comment col-lg-9  text_{{actualite.id}}" type="text"  placeholder ="Add a comment..." > 
+
+                        <button  onclick="comment({{actualite.id}})" type="button" class="[ btn ] act ">
+                          <span class="[ glyphicon glyphicon-share-alt ]"></span>
+                        </button>
+                       
+                      </div>
+                      <div class="panel-google-plus-comment">
+                        <img class="img-circle" src="https://lh3.googleusercontent.com/uFp_tsTJboUY7kue5XAsGA=s46" alt="User Image" />
+                        <div class="panel-google-plus-textarea"> 
+                          <textarea rows="4"></textarea>
+                          <button onclick="comment({{actualite.id}})" type="submit" class="[ btn btn-success disabled ]">Commenter</button>
+                          <button type="reset" class="[ btn btn-default ]">Cancel</button>
+                        </div>
+                        <div class="clearfix"></div>
+                      </div>
+                    </div>
+                  </div>
+                {% else %}
+                  <div class="[ col-xs-12 col-sm-offset-1 col-md-9 ]">
+                    <div class="[ panel panel-default ] panel-google-plus">
+                      <div class="dropdown">
+                        <span class="dropdown-toggle" type="button" data-toggle="dropdown">
+                          <span class="[ glyphicon glyphicon-chevron-down ]"></span>
+                        </span>
+                        <ul class="dropdown-menu" role="menu">
+                          <li role="presentation"><a role="menuitem" onclick="deleteActu({{actualite.id}})" tabindex="-1" href="#">Supprimer</a></li>
+                        </ul>
+                      </div>
+                      <div class="panel-google-plus-tags">
+                        <ul>
+                          <li>+ {{actualite.type}}</li>
+                        </ul>
+                      </div>
+                      <div class="panel-heading">
+                        <img class="[ img-circle pull-left ]" src="{{ asset('images/') }}{{actualite.user.imagename}}" width="70px" height="70px" alt="profile" />
+                        <h3><a href='../user/{{actualite.user.id}}'>{{actualite.user.username}}</a></h3>
+                        <h5><span>Actualite</span> - <span>{{actualite.date|date("h:m")}}</span> - <span>{{actualite.date|date("d/m/Y")}}</span> </h5>
+                      </div>
+                      <div class="panel-body">
+                        <p>{{actualite.contenu | raw}}</p> 
+                        <p><a class="tool" onclick="comments({{actualite.id}});">Commentaires</a></p>
+                        <div class="box_{{actualite.id}}">
+                          <div class="commentbox"> 
+                          </div>
+                        </div>
+                      </div>
+                      <div class="panel-footer">
+                        <!--<button onclick="like({{actualite.id}})" type="button" class="[ btn ] act">
+                            <span class="[ glyphicon glyphicon-heart ]"></span>
+                        </button>-->  
+   
+                       <input class="input-comment col-lg-9  text_{{actualite.id}}" type="text"  placeholder ="Add a comment..." > 
+
+                        <button  onclick="comment({{actualite.id}})" type="button" class="[ btn ] act ">
+                          <span class="[ glyphicon glyphicon-share-alt ]"></span>
+                        </button>
+                       
+                      </div>
+                      <div class="panel-google-plus-comment">
+                        <img class="img-circle" src="https://lh3.googleusercontent.com/uFp_tsTJboUY7kue5XAsGA=s46" alt="User Image" />
+                        <div class="panel-google-plus-textarea"> 
+                          <textarea rows="4"></textarea>
+                          <button onclick="comment({{actualite.id}})" type="submit" class="[ btn btn-success disabled ]">Commenter</button>
+                          <button type="reset" class="[ btn btn-default ]">Cancel</button>
+                        </div>
+                        <div class="clearfix"></div>
+                      </div>
+                    </div>
+                  </div>
+                {% endif %} 
+              {% endif %}
+            {% endfor %} 
+          {% else %}
+                <div class="[ col-xs-12 col-sm-offset-1 col-md-9 ]">
+                  <div class="[ panel panel-default ] panel-google-plus">
+                    <div class="dropdown">
+                      <span class="dropdown-toggle" type="button" data-toggle="dropdown">
+                        <span class="[ glyphicon glyphicon-chevron-down ]"></span>
+                      </span>
+                    </div>
+                    <div class="panel-google-plus-tags">
+                      <ul>
+                        <li>+ Actualité</li>
+                      </ul>
+                    </div>
+                    <div class="panel-heading">
+                    <img class="[ img-circle pull-left ]" src="{{ asset('bundles/rpcore/img/anime.jpg') }}" width="70px" height="70px" alt="profile" />
+                      <h3>Equipe Ocameo</h3>
+                    </div>
+                    <div class="panel-body">
+                      <p>Bienvenue sur Ocameo ! </p> 
+                    </div>
+                    <div class="panel-footer">
+                    </div>
+                  </div>
+                </div>
+          {% endif %}

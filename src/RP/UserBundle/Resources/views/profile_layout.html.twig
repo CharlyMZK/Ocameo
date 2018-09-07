@@ -1,0 +1,209 @@
+{# src/OC/PlatformBundle/Resources/views/Advert/index.html.twig #}
+
+{% extends "RPCoreBundle::layout.html.twig" %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block stylesheets %} 
+  {{ parent() }}
+  <link rel="stylesheet" href="{{ asset('bundles/rpuser/css/user_style.css') }}" type="text/css" />
+  <link rel="stylesheet" href="{{ asset('bundles/rpuser/css/profile_style.css') }}" type="text/css" />
+  <link rel="stylesheet" href="{{ asset('bundles/rpuser/css/post_style.css') }}" type="text/css" /> 
+{% endblock %} 
+
+{% block rphome_body %} 
+  <div class="main_profile">    
+    <div class="card hovercard">
+      <div class="card-background">
+        <img class="card-bkimg" alt="" src="{{ asset('images/') }}{{user.imagename}}">
+      </div>
+      <div class="useravatar">
+        <img alt="" src="{{ asset('images/') }}{{user.imagename}}">
+      </div>
+      <div class="card-info"> <span class="card-title">{{user.username}}</span>
+      </div>
+    </div>
+    <div> 
+      <ul class="nav nav-tabs col-xs-11"> 
+        <li class="express"><a href="{{ path('fos_user_profile_show') }}">Actualités</a></li> 
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Partagez
+          <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a class="drop">Exprimez vous</a></li>
+            <li><a onclick="openshare();">Partager ma liste</a></li>
+          </ul>  
+        </li>    
+        <li class="notif"><a href="{{ path('rp_user_see_notifications') }}" >Notifications {% if myRequests|length > 0 %}<span class="glyphicon glyphicon-exclamation-sign"> </span>{% endif %}</a></li>
+        <li class="addfriend"><a class="dropadd" >Ajouter un ami</a></li>
+        <li class="friends"><a href="{{ path('rp_user_see_friend') }}" >Liste d'amis</a></li>
+        <li class="edit"><a href="{{ path('fos_user_profile_edit') }}" >Modifier mon profil</a></li>
+      </ul>
+    </div>
+     <div class="block-express col-lg-offset-4">
+      <input type="text" class="text-express" placeholder="Bla bla bla "><button type="button" onclick="send_express({{user.id}})" class="col-xs-offset-4 col-lg-offset-0 btn btn-primary">Envoyer !</button>
+    </div>
+    <div class="block-add col-lg-offset-4 col-xs-offset-2"> 
+      <input type="text" class="text-add" placeholder="Bernardo ">&nbsp;<button type="button" onclick="addFriend({{user.id}})" class="btn btn-primary">Ajouter !</button>
+    </div>   
+    <div class="content_profile">
+      {% block content %} 
+      {% endblock %} 
+    </div>     
+  </div>
+  <div class="modalExpress fade bs-serie-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Exprime toi ! </h3>
+        </div>
+        <div class="modal-body"> 
+          <input type="text" class="text-express" placeholder="Bla bla bla ">
+        </div>
+        <div class="modal-footer">
+          <button type="button" onclick="send_express()" class="btn btn-primary">Envoyer !</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+        </div>
+      </div> 
+    </div>
+  </div>
+  <div class="modalShare fade bs-serie-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Voulez vous partagez votre liste ?</h3>
+        </div>
+        <div class="modal-footer">
+          <button type="button" onclick="sharelist();" class="btn btn-primary">Oui</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Non</button>
+        </div>
+      </div> 
+    </div> 
+  </div>
+  
+<script>
+
+  var drop = false;
+  var add = false;
+
+
+  /**
+   * Triggers
+   * @param  {[type]} ){                 if(drop){      drop [description]
+   * @return {[type]}     [description]
+   */
+  
+  $('.drop').click(function(){
+    if(drop){
+      drop = false;
+      $('.block-express').hide();
+    }else{
+      drop = true;
+      add = false;
+      $('.block-add').hide();
+      $('.block-express').show();      
+    }
+
+  });
+
+  $('.dropadd').click(function(){
+    if(add){
+      add = false;
+      $('.block-add').hide();
+    }else{
+      add = true;
+      drop = false;
+      $('.block-express').hide();
+      $('.block-add').show();      
+    }
+  }); 
+
+  $('.modif_profile').click(function(){
+    $.post( "{{ path('fos_user_profile_edit') }}",{}, function( data ) { 
+    }); 
+  })
+
+  /**
+   * Accepter un ami
+   * @param  {[type]} ask [description]
+   * @return {[type]}     [description]
+   */
+  function accept(ask){
+    $.post( "{{ path('rp_user_accept_friend') }}",{ask:ask}, function( data ) { 
+      $('.ask_'+ask).hide();
+    });
+  }
+  /**
+   * Refuser un ami
+   * @param  {[type]} ask [description]
+   * @return {[type]}     [description]
+   */
+  function refuse(ask){ 
+    $.post( "{{ path('rp_user_refuse_friend') }}",{ask:ask}, function( data ) { 
+      $('.ask_'+ask).hide();   
+    });
+  }
+
+  /**
+   * Permet d'ajouter un ami
+   * @param {[type]} id [description]
+   */
+  function addFriend(id){
+     var user = $('.text-add').val();
+      $.post( "{{ path('rp_user_add') }}",{id:id,user:user}, function( data ) { 
+        if(data == "1"){
+          swal("Génial !", "Ta demande a été envoyée.", "success");
+        }else if(data == "3"){
+          swal("Oups !", "Tu a déjà demandé cette personne en ami", "error");
+        }else{
+          swal("Oups !", "Cette personne n'existe pas.", "error");
+        }
+        
+      });
+  }
+  /**
+   * Ouvre le modal de confirmation pour le partage de liste
+   * @return {[type]} [description]
+   */
+  function openshare(){
+     $('.modalShare').modal(); 
+  }
+  /**
+   * Envoie la requette qui permet d'envoyer sa liste
+   * @return {[type]} [description]
+   */
+  function sharelist(){
+        var post = $('.text-express').val();
+      $.post( "{{ path('rp_list_partager') }}", function( data ) { 
+        swal("Génial !", "Ton post a bien été envoyé.", "success");
+        $('.modalShare').modal('hide'); 
+        reload();
+      }); 
+  }
+  /**
+   * Envoie la requette qui permet d'enregistrer le texte entré dans exprimez vous ! 
+   * @return {[type]} [description]
+   */
+  function send_express(){ 
+      var post = $('.text-express').val();
+      $.post( "{{ path('rp_user_express') }}",{post:post}, function( data ) { 
+        $('.text-express').val('');
+        $('.block-express').hide();
+        reload();
+      }); 
+  }        
+  /**
+   * Recharge la page ayprès une action
+   * @return {[type]} [description]
+   */
+  function reload(){
+    $.post( "{{ path('rp_user_load') }}", function( data ){  
+      $('.tab-content').html(data);
+    });
+  }
+</script>
+<script src="{{ asset('bundles/rpuser/js/profile_script.js') }}"></script>  
+{% endblock %} 
+

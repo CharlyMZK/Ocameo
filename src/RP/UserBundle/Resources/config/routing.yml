@@ -1,0 +1,59 @@
+rp_user_show:
+    path:     /user/{id}
+    defaults: { _controller: RPUserBundle:Profile:get }
+
+rp_user_add_friend:
+    path:     /add
+    defaults: { _controller: RPUserBundle:Profile:add }
+
+rp_user_accept_friend:
+    path:     /accept
+    defaults: { _controller: RPUserBundle:Profile:accept }
+
+rp_user_refuse_friend:
+    path:     /refuse 
+    defaults: { _controller: RPUserBundle:Profile:refuse }
+
+rp_user_see_friend:
+    path:     /friends
+    defaults: { _controller: RPUserBundle:Profile:friends }
+
+rp_user_see_notifications:
+    path:     /notifications 
+    defaults: { _controller: RPUserBundle:Profile:notifications }
+
+rp_user_express:
+    path:     /express
+    defaults: { _controller: RPUserBundle:Profile:express }
+
+rp_user_express_to:
+    path:     /expressto
+    defaults: { _controller: RPUserBundle:Profile:expressto }
+
+rp_user_delete_actu:
+    path:     /delete
+    defaults: { _controller: RPUserBundle:Profile:delete }
+rp_user_more:
+    path:     /more
+    defaults: { _controller: RPUserBundle:Profile:more }
+rp_user_comment:
+    path:     /comment
+    defaults: { _controller: RPUserBundle:Profile:comment }
+
+
+rp_user_load_comment:
+    path:     /loadcomment
+    defaults: { _controller: RPUserBundle:Profile:loadComment }
+
+
+rp_user_load:
+    path:     /load
+    defaults: { _controller: RPUserBundle:Profile:load }
+rp_user_load_from: 
+    path:     /loadfrom
+    defaults: { _controller: RPUserBundle:Profile:loadfrom }
+
+
+rp_user_add:
+    path:     /add_by_search 
+    defaults: { _controller: RPUserBundle:Profile:addFriend }

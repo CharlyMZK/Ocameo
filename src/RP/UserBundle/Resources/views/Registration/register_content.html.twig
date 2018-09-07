@@ -1,0 +1,17 @@
+{% trans_default_domain 'FOSUserBundle' %}
+<section id="login">
+    <div class="container">
+     <div class="row">
+       <div class="col-xs-12 col-lg-offset-3 col-lg-4">
+        <h1>Inscrit toi ! </h1>
+			<form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register">
+			    {{ form_widget(form) }}
+			    <br/>
+			    <div>
+			        <input type="submit"  id="btn-login" class="btn btn-custom btn-lg btn-block" value="Inscription" />
+			    </div>
+			</form>
+      </div> <!-- /.col-xs-12 -->
+     </div> <!-- /.row -->
+    </div> <!-- /.container -->
+   </section>

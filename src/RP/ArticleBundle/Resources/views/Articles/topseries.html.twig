@@ -1,0 +1,77 @@
+{% extends "RPCoreBundle::layout.html.twig" %}
+
+{% block stylesheets %} 
+  {{ parent() }}
+  <link rel="stylesheet" href="{{ asset('bundles/rparticle/css/articles_style.css') }}" type="text/css" />
+{% endblock %} 
+
+{% block body %}
+  <body class="blog css3-animations-enabled device-desktop md-page-builder">
+    <div id="wrap" class="full-width border-4">
+      <div id="page-header" class="border-4 textaligncenter custom-bgcolor bg-fixed full-image" style="background-color:#ffffff;background-image:url({{ asset('bundles/rpcore/img/serie1.jpg') }}">
+        <div class="container padding-large">
+          <h2 style="color:#ffffff">Series</h2> 
+          <h3 style="color:#ffffff">Suivez les news !</h3>
+        </div>
+      </div>
+      <div class="page-content" id="blog-container">
+        <div class="container"> 
+          <div class="row">
+            <div class="col-md-3 col-side hidden-sm">
+              <aside class="blog-widget-area widget-area">    
+                <div id="search-2" class="widget widget_search">
+                </div>      
+                <div id="recent-posts-2" class="widget widget_recent_entries"><h3 class="widget-title">Derniers films </h3>      
+                  <ul>
+                    {% for serie in listSeries %}
+                      <li>
+                        <a href="{{ path('rp_article_show_serie', { 'id' : serie.id }) }}">{{serie.name}}</a>
+                        <span class="post-date">{{serie.type}}</span>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                </div>
+                <div id="categories-2" class="widget widget_categories"><h3 class="widget-title">Categories</h3>      
+                  <ul>
+                    {% for type in types %}
+                      <li class="cat-item cat-item-17">{{type.type}}</li> 
+                    {% endfor %}
+                  </ul> 
+                </div>
+                <div id="md_widget_pinterest-2" class="widget widget_md_widget_pinterest">
+                  <h3 class="widget-title">Plus de films</h3>
+                  <ul>
+                    {% for serie in listSeries %}
+                      <li style="/web/bundles/rpcore/img/{{serie.image}}"><a href="{{ path('rp_article_show_serie', { 'id' : serie.id }) }}" target="_blank"></a></li>
+                    {% endfor %}
+                  </ul>
+                </div>    
+              </aside>
+            </div>
+            <!-- CONTENU DE LA PAGE -->
+            {% for serie in listSeries %}
+              <div class="col-md-9">  
+                <div class="md-blog classic"> 
+                  <article class="post-2981 post format-standard"> 
+                    <div class="featured-image">
+                      <a href="{{ path('rp_article_show_serie', { 'id' : serie.id }) }}" title="Standard Post 2"><img src="/web/bundles/rpcore/img/{{serie.image}}" class="attachment-md-blog wp-post-image" alt="tumblr_myp93odkni1st5lhmo1_1280" />
+                        <div class="featured-image-overlay"><span></span>
+                        </div>
+                      </a>
+                    </div> 
+                    <div class="post-body">
+                      <h2 class="post-title"><a href="{{ path('rp_article_show_serie', { 'id' : serie.id }) }}" title="Standard Post 2">{{serie.name}}</a><<span class="note"> {{notes[loop.index-1]}} / 5&nbsp;<span class="glyphicon glyphicon-star-empty"></span></h2>
+                      <br/>
+                      <div class="post-main"><p>{{serie.description}}</p> 
+                      </div>
+                      <div class="read-more"><a href="{{ path('rp_article_show_serie', { 'id' : serie.id }) }}" title="Standard Post 2'">En savoir plus <i class="typcn-arrow-right"></i></a></div>
+                    </div>
+                  </article>
+                </div>
+              </div>
+            {% endfor %}
+          </div>      
+        </div>
+      </div>  
+    </div>
+{% endblock %} 

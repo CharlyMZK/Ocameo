@@ -1,0 +1,134 @@
+/**
+ *	TABLES
+ * 
+ */
+.modalNote{
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1050;
+    display: none;
+    overflow: hidden;
+    -webkit-overflow-scrolling: touch;
+    outline: 0
+}
+.lead{
+    margin-left:100px;
+}
+#radioBtn .notActive{
+    color: #3276b1;
+    background-color: #fff;
+}
+.listserie{
+	margin-top:50px;
+}
+.jump{
+	margin-top:50px;
+}
+.btn-primary{
+    background-color:#2780e3 !important;
+}
+.filterable {
+    margin-top: 30px;
+}
+.filterable .panel-heading .pull-right {
+    margin-top: -20px;
+}
+.filterable .filters input[disabled] {
+    background-color: transparent;
+    border: none;
+    cursor: auto;
+    box-shadow: none;
+    padding: 0;
+    height: auto;
+}
+.filterable .filters input[disabled]::-webkit-input-placeholder {
+    color: #333;
+}
+.filterable .filters input[disabled]::-moz-placeholder {
+    color: #333;
+}
+.filterable .filters input[disabled]:-ms-input-placeholder {
+    color: #333;
+}
+.panel-primary{
+	border:none !important;
+}
+
+.panel-heading{
+	margin-bottom:25px;
+}
+.panel-green{
+	background-color:#7ABA20 !important;
+	border:solid #7ABA20 1px !important;
+}
+.btn-green{
+	background-color:#7ABA20 !important;
+	border:solid #7ABA20 1px !important;
+}
+.panel-yellow{
+	background-color:#F0C300 !important;
+	border:solid #F0C300 1px !important;
+}
+.btn-yellow{
+	background-color:#F0C300 !important;
+	border:solid #F0C300 1px !important;
+}
+.table-bordered>thead>tr>th, .table-bordered>thead>tr>td{
+	border-bottom-width:2px !important;
+}
+.table-bordered>thead>tr>th{
+	border:1px solid #dddddd !important;
+}
+.table-bordered>tbody>tr>td{
+	border:1px solid #dddddd !important;
+}
+
+/**
+ *		SPINNER
+ *
+ *
+ * 
+ */
+
+
+
+
+.spinner{
+	width:100px;
+}
+@media ( max-width: 585px ) {
+    .input-group span.input-group-btn,.input-group input,.input-group button{
+        display: block;
+        width: 100%;
+        border-radius: 0;
+        margin: 0;
+    }
+    .input-group {
+        position: relative;   
+    }
+    .input-group span.data-up{
+        position: absolute;
+        top: 0;
+    }
+    .input-group span.data-dwn{
+        position: absolute;
+        bottom: 0;
+    }
+    .form-control.text-center {
+        margin: 34px 0;
+    }
+    .input-group-btn:last-child>.btn, .input-group-btn:last-child>.btn-group{
+        margin-left:0;
+    }
+
+}
+
+.btnval{
+	width:68px;
+	height:31.5px;
+	margin:0;
+	padding:0;
+}

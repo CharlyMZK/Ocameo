@@ -1,0 +1,12 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_host: mysql.hostinger.fr
+    database_port: null
+    database_name: u139470473_ocam 
+    database_user: u139470473_ocam
+    database_password: seramonraka1
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: null
+    mailer_password: null
+    secret: 167460e094998693d6c159ed746e079127329b34

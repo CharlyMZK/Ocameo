@@ -1,0 +1,30 @@
+rp_list_homepage:
+    path:     /maliste
+    defaults: { _controller: RPListBundle:List:index }
+rp_list_modifSaison:
+    path:     /maliste/modifSaison
+    defaults: { _controller: RPListBundle:List:modifSaison }
+rp_list_modifEpisode:
+    path:     /maliste/modifEpisode
+    defaults: { _controller: RPListBundle:List:modifEpisode }
+rp_list_change:
+    path:     /maliste/change
+    defaults: { _controller: RPListBundle:List:change }
+rp_list_form:
+    path:     /maliste/form
+    defaults: { _controller: RPListBundle:List:form }
+rp_list_ajout:
+    path:     /maliste/ajout
+    defaults: { _controller: RPListBundle:List:ajout }
+rp_list_delete:
+    path:     /maliste/delete
+    defaults: { _controller: RPListBundle:List:delete }
+rp_list_noter:
+    path:     /maliste/noter
+    defaults: { _controller: RPListBundle:List:noter }
+rp_list_partager:
+    path:     /maliste/share
+    defaults: { _controller: RPListBundle:List:share }
+rp_list_get:
+    path:     /list/get/{id}
+    defaults: { _controller: RPListBundle:List:get }

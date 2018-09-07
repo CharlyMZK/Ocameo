@@ -1,0 +1,4 @@
+services:
+#    rp_user.example:
+#        class: RP\UserBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

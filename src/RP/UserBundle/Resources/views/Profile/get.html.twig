@@ -1,0 +1,289 @@
+{# src/OC/PlatformBundle/Resources/views/Advert/index.html.twig #}
+
+{% extends "RPCoreBundle::layout.html.twig" %}
+
+{% block title %}
+
+{% endblock %} 
+
+{% block stylesheets %} 
+  {{ parent() }}
+  <link rel="stylesheet" href="{{ asset('bundles/rpuser/css/user_style.css') }}" type="text/css" />
+  <link rel="stylesheet" href="{{ asset('bundles/rpuser/css/profile_style.css') }}" type="text/css" />
+  <link rel="stylesheet" href="{{ asset('bundles/rpuser/css/post_style.css') }}" type="text/css" />
+{% endblock %} 
+
+{% block rphome_body %} 
+  <div class="main_profile">
+    <div class="card hovercard">
+      <div class="card-background">
+        <img class="card-bkimg" alt="" src="{{ asset('images/') }}{{user.imagename}}">
+      </div>
+      <div class="useravatar">
+        <img alt="" src="{{ asset('images/') }}{{user.imagename}}">
+      </div>
+      <div class="card-info"> <span class="card-title">{{user.username}}</span>
+      </div> 
+    </div>
+    <div>
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#tab1" data-toggle="tab">Actualités</a></li>
+        <li class="dropdown express-menu"><a class="drop" href="#">Exprimez vous !</a> </li>
+        {% for amitie in amities %}
+          {% if amitie.statut is defined %} 
+            {% if amitie.statut == "ami" %} 
+               <li ><a>Ami avec vous</a></li>
+            {% endif %}
+          {% endif %} 
+        {% endfor %}
+        {% if amities|length == 0 %} 
+          {% if (user.id != session.id)  %} <li ><a class="add" onclick="ajouter({{user.id}})">Ajouter en ami</a></li>{% endif %} 
+        {% endif %} 
+      </ul>
+    </div>
+    <div class="block-express col-lg-offset-4">
+      <input type="text" class="text-express" placeholder="Bla bla bla "><button type="button" onclick="send_express({{user.id}})" class="btn btn-primary">Envoyer !</button>
+    </div>   
+    <div class="content_profile">
+      <div class="tab-content">
+        <div class="tab-pane fade in active page-content" id="tab1">
+          <div class="container"> 
+            <div class="row">
+              <div class="col-md-9 posts">                  
+                {% for actualite in listActualite %}
+                   {% if actualite.user == user  or actualite.target == user %} 
+                      {% if actualite.type == "message"  %} 
+                          <div class="[ col-xs-12 col-sm-offset-1 col-md-9 ]">
+                                <div class="[ panel panel-default ] panel-google-plus">
+                                    <div class="panel-google-plus-tags">
+                                        <ul>
+                                            <li>+ {{actualite.type}}</li>
+                                        </ul>
+                                    </div>
+                                    <div class="panel-heading">
+                                        <img class="[ img-circle pull-left ]" src="{{ asset('images/') }}{{actualite.user.imagename}}" width="70px" height="70px" alt="profile" />
+                                        <h3><a href='../user/{{actualite.user.id}}'>{{actualite.user.username}}</a></h3>
+                                        <h5><span>Actualite</span> - <span>{{actualite.date|date("h:m")}}</span> - <span>{{actualite.date|date("d/m/Y")}}</span> </h5>
+                                    </div>
+                                    <div class="panel-body">   
+                                      <p>[{{actualite.target.username}}]  {{actualite.contenu | raw}}</p>
+                                      <p><a class="tool" onclick="comments({{actualite.id}});">Commentaires</a></p>
+                                      <div class="box_{{actualite.id}}">
+                                        <div class="commentbox"> 
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="panel-footer">
+                                      <!--<button onclick="like({{actualite.id}})" type="button" class="[ btn ] act">
+                                          <span class="[ glyphicon glyphicon-heart ]"></span>
+                                      </button>-->  
+                 
+                                     <input class="input-placeholder text_{{actualite.id}}" type="text"  placeholder ="Add a comment..." > 
+
+                                      <button  onclick="comment({{actualite.id}})" type="button" class="[ btn ] act ">
+                                        <span class="[ glyphicon glyphicon-share-alt ]"></span>
+                                      </button>
+                                     
+                                    </div>
+                                    <div class="panel-google-plus-comment">
+                                      <img class="img-circle" src="https://lh3.googleusercontent.com/uFp_tsTJboUY7kue5XAsGA=s46" alt="User Image" />
+                                      <div class="panel-google-plus-textarea"> 
+                                        <textarea rows="4"></textarea>
+                                        <button onclick="comment({{actualite.id}})" type="submit" class="[ btn btn-success disabled ]">Commenter</button>
+                                        <button type="reset" class="[ btn btn-default ]">Cancel</button>
+                                      </div>
+                                      <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                          </div>
+                      {% else %} 
+                          <div class="[ col-xs-12 col-sm-offset-1 col-md-9 ]">
+                                <div class="[ panel panel-default ] panel-google-plus">
+                                    <div class="dropdown">
+                                        <span class="dropdown-toggle" type="button" data-toggle="dropdown">
+                                            <span class="[ glyphicon glyphicon-chevron-down ]"></span>
+                                        </span>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+                                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+                                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+                                            <li role="presentation" class="divider"></li>
+                                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="panel-google-plus-tags">
+                                        <ul>
+                                            <li>+ {{actualite.type}}</li>
+                                        </ul>
+                                    </div>
+                                    <div class="panel-heading">
+                                        <img class="[ img-circle pull-left ]" src="{{ asset('images/') }}{{actualite.user.imagename}}" width="70px" height="70px" alt="profile" />
+                                        <h3><a href='../user/{{actualite.user.id}}'>{{actualite.user.username}}</a></h3>
+                                        <h5><span>Actualite</span> - <span>{{actualite.date|date("h:m")}}</span> - <span>{{actualite.date|date("d/m/Y")}}</span> </h5>
+                                    </div>
+                                    <div class="panel-body">
+                                      <p>{{actualite.contenu | raw}}</p> 
+                                      <p><a class="tool" onclick="comments({{actualite.id}});">Commentaires</a></p>
+                                      <div class="box_{{actualite.id}}">
+                                        <div class="commentbox"> 
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="panel-footer">
+                                      <!--<button onclick="like({{actualite.id}})" type="button" class="[ btn ] act">
+                                          <span class="[ glyphicon glyphicon-heart ]"></span>
+                                      </button>-->  
+                 
+                                     <input class="input-placeholder text_{{actualite.id}}" type="text"  placeholder ="Add a comment..." > 
+
+                                      <button  onclick="comment({{actualite.id}})" type="button" class="[ btn ] act ">
+                                        <span class="[ glyphicon glyphicon-share-alt ]"></span>
+                                      </button>
+                                     
+                                    </div>
+                                    <div class="panel-google-plus-comment">
+                                      <img class="img-circle" src="https://lh3.googleusercontent.com/uFp_tsTJboUY7kue5XAsGA=s46" alt="User Image" />
+                                      <div class="panel-google-plus-textarea"> 
+                                        <textarea rows="4"></textarea>
+                                        <button onclick="comment({{actualite.id}})" type="submit" class="[ btn btn-success disabled ]">Commenter</button>
+                                        <button type="reset" class="[ btn btn-default ]">Cancel</button>
+                                      </div>
+                                      <div class="clearfix"></div>
+                                    </div>                            </div>
+                          </div>
+                      {% endif %} 
+                   {% endif %} 
+                {% endfor %}
+              </div>
+              <div class="col-md-3 col-side hidden-sm">
+                 <aside class="blog-widget-area widget-area">    
+                   <div id="search-2" class="widget widget_search">
+                   </div>      
+                   <div id="recent-posts-2" class="widget widget_recent_entries"><h3 class="widget-title">Dernieres series </h3>      
+                     <ul>
+                          {% for serie in listSeries %}
+                              <li>
+                                <a href="{{ path('rp_article_show_serie', { 'id' : serie.id }) }}">{{serie.name}}</a>
+                                <span class="post-date">{{serie.type}}</span>
+                              </li>
+                          {% endfor %}
+                     </ul>
+                   </div>
+                   <div id="categories-2" class="widget widget_categories"><h3 class="widget-title">Categories</h3>      
+                     <ul>
+                          {% for type in types %}
+                            <li class="cat-item cat-item-17">{{type.type}}</li> 
+                          {% endfor %}
+                       
+                     </ul>
+                   </div>
+                   <div id="md_widget_pinterest-2" class="widget widget_md_widget_pinterest">
+                     <h3 class="widget-title">Plus de series</h3>
+                     <ul>
+                          {% for serie in listSeries %}
+                              <li style="background-image:url({{serie.image}}"><a href="https://www.pinterest.com/pin/212091463678746524/" target="_blank"></a></li>
+                          {% endfor %}
+                     </ul>
+                   </div>    
+                 </aside>
+              </div>
+          </div>      
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>     
+  <div class="modalExpress fade bs-serie-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Exprime toi ! </h3>
+        </div>
+        <div class="modal-body"> 
+          <input type="text" class="text-express" placeholder="Bla bla bla ">
+        </div>
+        <div class="modal-footer">
+          <button type="button" onclick="send_express({{user.id}})" class="btn btn-primary">Envoyer !</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+        </div> 
+      </div> 
+    </div>
+  </div>
+<script>
+  var drop = false;
+  
+  /**
+   * Triggers
+   * @param  {[type]} ){                 if(drop){      drop [description]
+   * @return {[type]}     [description]
+   */
+  
+  $('.drop').click(function(){
+    if(drop){
+      drop = false;
+      $('.block-express').hide();
+    }else{
+      drop = true;
+      add = false;
+      $('.block-add').hide();
+      $('.block-express').show();      
+    }
+
+  });
+
+
+   function refresh(id){
+      $.post( "{{ path('rp_user_load_from') }}",{id:id}, function( data ){  
+        $('.tab-content').html(data);
+      });
+    }
+
+  function express(){
+     $('.modalExpress').modal(); 
+  }
+
+
+  function send_express(target){ 
+      var post = $('.text-express').val();
+      $.post( "{{ path('rp_user_express_to') }}",{post:post,target:target}, function( data ) { 
+        $('.text-express').val('');
+        $('.block-express').hide(); 
+        refresh(target);
+      }); 
+  }       
+
+  function comments(id){ 
+    $.post( "{{ path('rp_user_load_comment') }}",{id:id}, function( data ){ 
+      $('.box_'+id+' > div').show();
+      $('.box_'+id+' > div').html(data);
+    });
+  }
+
+    function ajouter(id){ 
+      $.post( "{{ path('rp_user_add_friend') }}",{id:id}, function( data ){ 
+          swal("Envoyé !", "Une demande a été envoyée.", "success");
+          $('.add').hide();
+      }); 
+    }
+
+
+  function comment(id){
+    var comment = $('.text_'+id).val(); 
+    $.post( "{{ path('rp_user_comment') }}",{id:id,comment:comment}, function( data ){ 
+      $('.box_'+id+' > div').show();
+      $('.box_'+id+' > div').append("<div class=\"panel-heading comment\"><img class=\"[ img-circle pull-left ] comment-img\" src=\"{{ asset('images/') }}{{user.imagename}}\" width=\"40px\" height=\"40px\" alt=\"profile\" /><a href='../user/{{user.id}}'>{{user.username}}</a><p>"+comment+"</p></div>");
+    });
+  }
+
+  $('.modif_profile').click(function(){
+    $.post( "{{ path('fos_user_profile_edit') }}",{}, function( data ) { 
+      alert(data)
+    }); 
+  }) 
+
+ 
+</script>
+<script src="{{ asset('bundles/rpuser/js/user_script.js') }}"></script>
+<script src="{{ asset('bundles/rpuser/js/profile_script.js') }}"></script>  
+{% endblock %} 
+

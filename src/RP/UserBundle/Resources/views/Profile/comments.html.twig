@@ -1,0 +1,7 @@
+{% for comment in listComments %} 
+	<div class="panel-heading comment">
+    	<img class="[ img-circle pull-left ] comment-img" src="{{ asset('images/') }}{{comment.user.imagename}}" width="40px" height="40px" alt="profile" />
+        <a href='../user/{{comment.user.id}}'>{{comment.user.username}}</a>
+    	<p>{{comment.content}}</p>
+    </div>
+{% endfor %} 	

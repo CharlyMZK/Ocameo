@@ -1,0 +1,40 @@
+rp_article_animes:
+    path:     /animes
+    defaults: { _controller: RPArticleBundle:Article:animes }
+rp_article_topanimes:
+    path:     /topanimes
+    defaults: { _controller: RPArticleBundle:Article:topanimes }
+rp_article_show_anime:
+    path:     /anime/{id}
+    defaults: { _controller: RPArticleBundle:Article:showanime }
+
+
+rp_article_series:
+    path:     /series
+    defaults: { _controller: RPArticleBundle:Article:series }
+rp_article_show_serie:
+    path:     /serie/{id}
+    defaults: { _controller: RPArticleBundle:Article:showserie }
+rp_article_topseries:
+    path:     /topseries
+    defaults: { _controller: RPArticleBundle:Article:topseries }
+
+
+rp_article_films:
+    path:     /films
+    defaults: { _controller: RPArticleBundle:Article:films }
+rp_article_show_film:
+    path:     /film/{id}
+    defaults: { _controller: RPArticleBundle:Article:showfilm }
+rp_article_topfilms:
+    path:     /topfilms
+    defaults: { _controller: RPArticleBundle:Article:topfilms }
+
+
+rp_article_article:
+    path:     /article/{cible}/{id}
+    defaults: { _controller: RPArticleBundle:Article:article }
+
+rp_article_type:
+    path:     /{cible}/categories
+    defaults: { _controller: RPArticleBundle:Article:type }  
